@@ -4,6 +4,8 @@
 //
 //  Created by daniel saghbine on 12/8/24.
 //
+//  CTCI 1.1 Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
+//  Auxiliary space complexity: O(1). Time complexity: O(n log n).
 
 #include <iostream>
 using namespace std;
@@ -86,9 +88,9 @@ bool Is_Unique(string &s) // s is a C++ string
 {
     heapsort(s); // sort the string using heapsort
     
-    for(int i=0; i < s.size()-1; i++) // check characters at indices 0...N-2 in the string
+    for(int i=0; i < s.size()-1; i++) // check char at indices 0...N-2 in the string
     {
-        if(s[i] == s[i+1]) // check if adjacent character pairs are equivalent
+        if(s[i] == s[i+1]) // check if adjacent char pairs are equivalent
             return false; // the string isn't unique
     }
     
