@@ -1,9 +1,9 @@
 //
 //  main.cpp
-//  Is Unique
+//  CTCI 1.1 Is Unique
 //
 //  Created by daniel saghbine on 12/8/24.
-//  CTCI 1.1 Is Unique
+//
 
 #include <iostream>
 using namespace std;
@@ -12,14 +12,13 @@ bool Is_Unique(string &s);
 
 int main()
 {
-    string str;
-    
     cout<<"problem\n-------\n\tImplement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?\n\n";
     
     cout<<"input\n-----\n\tType: ";
-    cin>>str;
+    string str;
+    getline(cin, str);
     
-    cout<<"\noutput\n------\n\tThe string is"<<(Is_Unique(str) ? "" : "n't")<<" unique.\n\n";
+    cout<<"\noutput\n------\n\t\""<<str<<"\" is"<<(Is_Unique(str) ? "" : "n't")<<" unique.\n\n";
     
     cout<<"solution\n--------\n\tAuxiliary space complexity: O(1); time complexity: O(n log n).\n\n";
     
@@ -67,17 +66,12 @@ void max_heapify(string &s, int n, int i)
     while(swap);
 }
 
-void build_max_heap(string &s)
-{
-    for(int i=int(s.size())/2-1; i >= 0; i--)
-        max_heapify(s, int(s.size()), i);
-}
-
 void heapsort(string &s)
 {
     int counter=int(s.size());
     
-    build_max_heap(s);
+    for(int i=int(s.size())/2-1; i >= 0; i--)
+        max_heapify(s, int(s.size()), i);
     
     while(counter > 1)
     {
@@ -88,11 +82,11 @@ void heapsort(string &s)
 
 bool Is_Unique(string &s) // s is input string
 {
-    heapsort(s); // sort s using heapsort
+    heapsort(s); // sort s with heapsort
     
-    for(int i=0; i < s.size()-1; i++) // check char at indices 0...N-2 in s
+    for(int i=0; i < s.size()-1; i++) // check char at indices 0...size-2 in s
     {
-        if(s[i] == s[i+1]) // check if adjacent char pairs are equivalent
+        if(s[i] == s[i+1]) // if adjacent char pairs are equivalent
             return false; // s isn't unique
     }
     
